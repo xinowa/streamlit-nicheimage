@@ -5,6 +5,7 @@ import io
 from utils import icon
 from streamlit_image_select import image_select
 from PIL import Image
+import random
 import base64
 from typing import List
 
@@ -144,7 +145,7 @@ def main_page(
                             "key": API_TOKEN,
                             "prompt": prompt,  # prompt
                             "model_name": model_name,  # See avaialble models in https://github.com/NicheTensor/NicheImage/blob/main/configs/model_config.yaml
-                            "seed": -1,  # -1 means random seed
+                            "seed": random.randint(0, 1e9),  # -1 means random seed
                             "miner_uid": -1,  # specify miner uid, -1 means random miner selected by validator
                             "pipeline_params": {  # params feed to diffusers pipeline, see all params here https://huggingface.co/docs/diffusers/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline.__call__
                                 "width": width,
