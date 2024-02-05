@@ -240,25 +240,18 @@ def main_page(
                             # Save generated image to session state
                             st.session_state.generated_image = output
                             captions = [f"Image {i+1} 🎈" for i in range(4)]
-                            cols_1 = st.columns(2)
-                            cols_2 = st.columns(2)
+                            cols_1 = st.columns(4)
+                            all_images = []
                             with st.container():
                                 # Displaying the image
                                 for i, image in enumerate(
                                     st.session_state.generated_image
                                 ):
-                                    if i < 2:
-                                        cols_1[i].image(
-                                            image,
-                                            caption=captions[i],
-                                            use_column_width=True,
-                                        )
-                                    else:
-                                        cols_2[i - 2].image(
-                                            image,
-                                            caption=captions[i],
-                                            use_column_width=True,
-                                        )
+                                    cols_1[i].image(
+                                        image,
+                                        caption=captions[i],
+                                        use_column_width=True,
+                                    )
                                     # Add image to the list
                                     all_images.append(image)
 
