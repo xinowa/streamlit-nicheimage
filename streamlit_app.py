@@ -324,6 +324,12 @@ def main_page(
                 use_column_width=True,
             )
     with tab2:
+        st.markdown(
+            """
+            **NicheImage is a decentralized network of image generation models, powered by the Bittensor protocol. Below you find information about the current models on the network.**
+            """,
+            unsafe_allow_html=True,
+        )
         response = requests.get(
             "http://proxy_client_nicheimage.nichetensor.com:10003/get_uid_info"
         )
