@@ -299,6 +299,7 @@ def main_page(
                                         image,
                                         caption=captions[i],
                                         use_column_width=True,
+                                        output_format="PNG",
                                     )
                                     # Add image to the list
                                     all_images.append(image)
