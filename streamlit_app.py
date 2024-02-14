@@ -311,15 +311,12 @@ def main_page(
                             # Download option for each image
                             with zipfile.ZipFile(zip_io, 'w') as zipf:
                                 for i, image in enumerate(st.session_state.all_images):
-                                    response = requests.get(image)
-                                    if response.status_code == 200:
-                                        image_data = response.content
-                                        # Write each image to the zip file with a name
-                                        zipf.writestr(
-                                            f"output_file_{i+1}.png", image_data)
-                                    else:
-                                        st.error(
-                                            f"Failed to fetch image {i+1} from {image}. Error code: {response.status_code}", icon="🚨")
+                                    image.save(f"output_{i}.png")
+                                    zipf.write(f"output_{i}.png")
+                                    st.markdown(
+                                        f"[:floppy_disk: Download Image {i+1}](data:application/zip;base64,{base64.b64encode(image.getvalue()).decode()})",
+                                        unsafe_allow_html=True,
+                                    )
                             # Create a download button for the zip file
                             st.download_button(
                                 ":red[**Download All Images**]", data=zip_io.getvalue(), file_name="output_files.zip", mime="application/zip", use_container_width=True)
