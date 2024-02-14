@@ -139,7 +139,7 @@ def configure_sidebar() -> None:
             )
             prompt = st.text_area(
                 ":blue[**Enter prompt ✍🏾**]",
-                value="An astronaut riding a rainbow unicorn, cinematic, dramatic",
+                value="3d render of cat in the style of Louis Wain, add detail, very colorful",
             )
             aspect_ratio = st.selectbox(
                 ":blue[**Aspect Ratio**]", options=["Tall", "Wide", "Square"]
@@ -147,7 +147,7 @@ def configure_sidebar() -> None:
             num_images = st.slider(":blue[**Number of images to generate**]", 1, 4, 1)
             negative_prompt = st.text_area(
                 ":blue[**Negative Prompt 🙅🏽‍♂️**]",
-                value="the absolute worst quality, distorted features",
+                value="low quality, blurry, pixelated, noisy, low resolution, defocused, out of focus, overexposed, bad image, nsfw",
                 help="This is a negative prompt, basically type what you don't want to see in the generated image",
             )
             with st.expander(
