@@ -315,7 +315,9 @@ def main_page(
                                     image.save(image_data, format="PNG")
                                     image_data.seek(0)
                                     # Write each image to the zip file with a name
-                                    zipf.writestr(f"output_file_{i+1}.png", image_data)
+                                    zipf.writestr(
+                                        f"output_file_{i+1}.png", image_data.read()
+                                    )
                             # Create a download button for the zip file
                             st.download_button(
                                 ":red[**Download All Images**]",
