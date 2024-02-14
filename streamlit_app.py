@@ -70,6 +70,15 @@ model_config = {
             "wide": (768, 512),
         },
     },
+    "RealitiesEdgeXL": {
+        "num_inference_steps": 7,
+        "guidance_scale": 5.5,
+        "ratio": {
+            "square": (1024, 1024),
+            "tall": (672, 1024),
+            "wide": (1024, 672),
+        },
+    },
 }
 
 
@@ -126,7 +135,7 @@ def configure_sidebar() -> None:
         with st.form("my_form"):
             model_name = st.selectbox(
                 ":blue[**Select Model**]",
-                options=["RealisticVision", "AnimeV3", "SDXLTurbo"],
+                options=["RealisticVision", "AnimeV3", "SDXLTurbo", "RealitiesEdgeXL"],
             )
             prompt = st.text_area(
                 ":blue[**Enter prompt ✍🏾**]",
@@ -247,11 +256,11 @@ def main_page(
                                     "negative_prompt": negative_prompt,
                                 },
                             }
-                            print(data)
                             duplicate_data = [data.copy() for _ in range(num_images)]
                             for i, d in enumerate(duplicate_data):
                                 d["seed"] = seeds[i]
 
+                            print(duplicate_data)
                             # Call the NicheImage API
                             loop = get_or_create_eventloop()
                             asyncio.set_event_loop(loop)
