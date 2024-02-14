@@ -309,19 +309,24 @@ def main_page(
                             zip_io = io.BytesIO()
 
                             # Download option for each image
-                            with zipfile.ZipFile(zip_io, 'w') as zipf:
+                            with zipfile.ZipFile(zip_io, "w") as zipf:
                                 for i, image in enumerate(st.session_state.all_images):
-                                    image.save(f"output_{i}.png")
-                                    zipf.write(f"output_{i}.png")
-                                    st.markdown(
-                                        f"[:floppy_disk: Download Image {i+1}](data:application/zip;base64,{base64.b64encode(image.getvalue()).decode()})",
-                                        unsafe_allow_html=True,
-                                    )
+                                    image_data = io.BytesIO()
+                                    image.save(image_data, format="PNG")
+                                    image_data.seek(0)
+                                    # Write each image to the zip file with a name
+                                    zipf.writestr(f"output_file_{i+1}.png", image_data)
                             # Create a download button for the zip file
                             st.download_button(
-                                ":red[**Download All Images**]", data=zip_io.getvalue(), file_name="output_files.zip", mime="application/zip", use_container_width=True)
-                    status.update(label="✅ Images generated!",
-                                state="complete", expanded=False)
+                                ":red[**Download All Images**]",
+                                data=zip_io.getvalue(),
+                                file_name="output_files.zip",
+                                mime="application/zip",
+                                use_container_width=True,
+                            )
+                    status.update(
+                        label="✅ Images generated!", state="complete", expanded=False
+                    )
                 except Exception as e:
                     print(e)
                     st.error(f"Encountered an error: {e}", icon="🚨")
