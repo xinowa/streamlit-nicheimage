@@ -72,7 +72,7 @@ model_config = {
     },
     "RealitiesEdgeXL": {
         "num_inference_steps": 7,
-        "guidance_scale": 5.5,
+        "guidance_scale": 2.5,
         "ratio": {
             "square": (1024, 1024),
             "tall": (672, 1024),
