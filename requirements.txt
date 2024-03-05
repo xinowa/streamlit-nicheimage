@@ -1,5 +1,5 @@
 replicate
-streamlit==1.26
+streamlit==1.29
 requests
 streamlit-image-select
 plotly
