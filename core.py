@@ -63,8 +63,9 @@ model_config = {
         },
     },
     "DreamShaper": {
-        "num_inference_steps": 30,
+        "num_inference_steps": 35,
         "guidance_scale": 7,
+        "clip_skip": 2,
         "ratio": {
             "square": (512, 512),
             "tall": (512, 768),

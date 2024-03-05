@@ -96,9 +96,10 @@ def configure_sidebar() -> None:
                 ":blue[**Enter prompt ✍🏾**]",
                 value="3d render of cat in the style of Louis Wain, add detail, very colorful",
             )
-            aspect_ratio = st.selectbox(
-                ":blue[**Aspect Ratio**]", options=["Tall", "Wide", "Square"]
-            )
+            # aspect_ratio = st.selectbox(
+            #     ":blue[**Aspect Ratio**]", options=["Tall", "Wide", "Square"]
+            # )
+            aspect_ratio = "Square"
             conditional_image = st.file_uploader(
                 ":blue[**Upload your image**]",
                 type=["png", "jpg", "jpeg"],

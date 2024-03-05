@@ -91,13 +91,20 @@ def configure_sidebar() -> None:
         with st.form("my_form"):
             model_name = st.selectbox(
                 ":blue[**Select Model**]",
-                options=["RealisticVision", "AnimeV3", "DreamShaper", "RealitiesEdgeXL"],
+                options=[
+                    "RealisticVision",
+                    "AnimeV3",
+                    "DreamShaper",
+                    "RealitiesEdgeXL",
+                ],
             )
             prompt = st.text_area(
                 ":blue[**Enter prompt ✍🏾**]",
                 value="3d render of cat in the style of Louis Wain, add detail, very colorful",
             )
-            aspect_ratio = "Square"
+            aspect_ratio = st.selectbox(
+                ":blue[**Aspect Ratio**]", options=["Tall", "Wide", "Square"]
+            )
             num_images = 4
             negative_prompt = st.text_area(
                 ":blue[**Negative Prompt 🙅🏽‍♂️**]",
