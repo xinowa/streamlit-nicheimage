@@ -172,9 +172,9 @@ def main_page(
                             "miner_uid": int(
                                 uid
                             ),  # specify miner uid, -1 means random miner selected by validator
+                            "pipeline_type": pipeline_type,
+                            "conditional_image": conditional_image,
                             "pipeline_params": {  # params feed to diffusers pipeline, see all params here https://huggingface.co/docs/diffusers/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline.__call__
-                                "conditional_image": conditional_image,
-                                "pipeline_type": pipeline_type,
                                 "width": width,
                                 "height": height,
                                 "num_inference_steps": num_inference_steps,
