@@ -7,7 +7,6 @@ from typing import List
 from PIL import Image
 import aiohttp
 import asyncio
-from diffusers.utils import load_image
 from streamlit_image_select import image_select
 import requests
 import streamlit as st

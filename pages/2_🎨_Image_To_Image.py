@@ -10,7 +10,6 @@ import asyncio
 import requests
 import streamlit as st
 import requests
-from diffusers.utils import load_image
 import zipfile
 import io
 import pandas as pd
@@ -182,9 +181,7 @@ def main():
     if not submitted:
         st.info("🎨 Upload your image and imagine the possibilities!")
         st.image(
-            load_image(
-                "https://preview.redd.it/using-crude-drawings-for-composition-img2img-v0-v7adchf52oha1.jpg?auto=webp&s=1251ed1c567a04ec0cf17fe257fbac01b2d903bd"
-            )
+            "https://preview.redd.it/using-crude-drawings-for-composition-img2img-v0-v7adchf52oha1.jpg?auto=webp&s=1251ed1c567a04ec0cf17fe257fbac01b2d903bd"
         )
 
 
