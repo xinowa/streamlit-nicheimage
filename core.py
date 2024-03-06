@@ -52,10 +52,12 @@ model_config = {
         },
         "num_inference_steps": 30,
         "guidance_scale": 7.0,
+        "clip_skip": 2,
     },
     "AnimeV3": {
         "num_inference_steps": 25,
         "guidance_scale": 7,
+        "clip_skip": 2,
         "ratio": {
             "square": (1024, 1024),
             "tall": (672, 1024),
@@ -75,6 +77,7 @@ model_config = {
     "RealitiesEdgeXL": {
         "num_inference_steps": 7,
         "guidance_scale": 2.5,
+        "clip_skip": 2,
         "ratio": {
             "square": (1024, 1024),
             "tall": (672, 1024),
@@ -132,7 +135,6 @@ def main_page(
         prompt (str): Text prompt for the image generation.
         negative_prompt (str): Text prompt for elements to avoid in the image.
     """
-    cols_1 = st.columns(4)
     if submitted:
         if secret_key != api_token and uid != "-1":
             st.error("Invalid secret key")
@@ -216,20 +218,35 @@ def main_page(
                             captions = [f"Image {i+1} 🎈" for i in range(4)]
                             all_images = []
                             # Displaying the image
-                            for i, image in enumerate(st.session_state.generated_image):
-                                cols_1[i].image(
-                                    image,
-                                    caption=captions[i],
-                                    use_column_width=True,
-                                    output_format="PNG",
-                                )
-                                # Add image to the list
-                                all_images.append(image)
+                            _, main_col, _ = st.columns([0.15, 0.7, 0.15])
+                            with main_col:
+                                cols_1 = st.columns(2)
+                                cols_2 = st.columns(2)
+                                with st.container(border=True):
+                                    for i, image in enumerate(
+                                        st.session_state.generated_image[:2]
+                                    ):
+                                        cols_1[i].image(
+                                            image,
+                                            caption=captions[i],
+                                            use_column_width=True,
+                                            output_format="PNG",
+                                        )
+                                        # Add image to the list
+                                        all_images.append(image)
+                                    for i, image in enumerate(
+                                        st.session_state.generated_image[2:]
+                                    ):
+                                        cols_2[i].image(
+                                            image,
+                                            caption=captions[i + 2],
+                                            use_column_width=True,
+                                            output_format="PNG",
+                                        )
 
                         # Save all generated images to session state
                         st.session_state.all_images = all_images
                         zip_io = io.BytesIO()
-
                         # Download option for each image
                         with zipfile.ZipFile(zip_io, "w") as zipf:
                             for i, image in enumerate(st.session_state.all_images):

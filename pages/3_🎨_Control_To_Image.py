@@ -94,7 +94,7 @@ def configure_sidebar() -> None:
             )
             prompt = st.text_area(
                 ":blue[**Enter prompt ✍🏾**]",
-                value="3d render of cat in the style of Louis Wain, add detail, very colorful",
+                value="cinematic still of a shiba inu, fluffy neck, wearing a suit of ornate metal armor",
             )
             aspect_ratio = "Square"
             conditional_image = st.file_uploader(
